@@ -90,7 +90,21 @@ class _UsersScreenState extends State<UsersScreen> {
                 title: 'Others',
                 // subtitle: 'My sddress Mirpur1,Dhaka',
                 icon: IconlyBold.bag,
-                onTap: () {}),
+                onTap: () async {
+                  await _showAddressDialog();
+                  // await showDialog(
+                  //     context: context,
+                  //     builder: (context) {
+                  //       return AlertDialog(
+                  //         title: Text('Update'),
+                  //         content: TextField(
+                  //           maxLines: 5,
+                  //           decoration:
+                  //               InputDecoration(hintText: 'Your Address'),
+                  //         ),
+                  //       );
+                  //     });
+                }),
             listile(title: 'My Orders', icon: IconlyLight.bag, onTap: () {}),
             listile(title: 'Wishist', icon: IconlyBold.heart, onTap: () {}),
             listile(
@@ -113,10 +127,57 @@ class _UsersScreenState extends State<UsersScreen> {
               },
               value: themeState.getDarkTheme,
             ),
+            ElevatedButton(
+                onPressed: () {
+                  _showAddressDialog();
+                },
+                child: Text('asd'))
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _showAddressDialog() async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Update'),
+            content: TextField(
+              // onChanged: (value) {
+              //   print('_addressTextController.text ${_addressTextController.text}');
+              // },
+              //  controller: _addressTextController,
+              maxLines: 5,
+              decoration: const InputDecoration(hintText: "Your address"),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () async {
+                  // String _uid = user!.uid;
+                  // try {
+                  //   await FirebaseFirestore.instance
+                  //       .collection('users')
+                  //       .doc(_uid)
+                  //       .update({
+                  //     'shipping-address': _addressTextController.text,
+                  //   });
+
+                  Navigator.pop(context);
+                  //   setState(() {
+                  //     address = _addressTextController.text;
+                  //   });
+                  // } catch (err) {
+                  //   GlobalMethods.errorDialog(
+                  //       subtitle: err.toString(), context: context);
+                  // }
+                },
+                child: const Text('Update'),
+              ),
+            ],
+          );
+        });
   }
 
   Widget listile({
