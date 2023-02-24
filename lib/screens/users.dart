@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -39,7 +37,7 @@ class _UsersScreenState extends State<UsersScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        Text(
+                        const Text(
                           'Hi, Mohib',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.w700),
@@ -65,7 +63,7 @@ class _UsersScreenState extends State<UsersScreen> {
                     // ),
                   ],
                 )),
-            Divider(
+            const Divider(
               thickness: 0,
               color: dark,
             ),
@@ -74,52 +72,32 @@ class _UsersScreenState extends State<UsersScreen> {
                 subtitle: 'My sddress Mirpur1,Dhaka',
                 icon: IconlyBold.location,
                 onTap: () async {
-                  await showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Update'),
-                          content: TextField(
-                            maxLines: 5,
-                            decoration:
-                                InputDecoration(hintText: 'Your Address'),
-                          ),
-                        );
-                      });
+                  await _showAddressDialog();
                 }),
             listile(
                 title: 'Others',
                 // subtitle: 'My sddress Mirpur1,Dhaka',
                 icon: IconlyBold.bag,
-                onTap: () async {
-                  await _showAddressDialog();
-                  // await showDialog(
-                  //     context: context,
-                  //     builder: (context) {
-                  //       return AlertDialog(
-                  //         title: Text('Update'),
-                  //         content: TextField(
-                  //           maxLines: 5,
-                  //           decoration:
-                  //               InputDecoration(hintText: 'Your Address'),
-                  //         ),
-                  //       );
-                  //     });
-                }),
+                onTap: () async {}),
             listile(title: 'My Orders', icon: IconlyLight.bag, onTap: () {}),
             listile(title: 'Wishist', icon: IconlyBold.heart, onTap: () {}),
             listile(
                 title: 'Forget Password',
                 icon: IconlyBold.unlock,
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CardScreen()));
+                  _showLoginDilog();
                 }),
-            listile(title: 'Login', icon: IconlyBold.login, onTap: () {}),
+            listile(
+                title: 'Login',
+                icon: IconlyBold.login,
+                onTap: () {
+                  _showLoginDilog();
+                }),
             SwitchListTile(
               title: Text(
                 themeState.getDarkTheme ? 'Light' : 'Dart',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                style:
+                    const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
               ),
               secondary: Icon(themeState.getDarkTheme
                   ? Icons.dark_mode_outlined
@@ -131,11 +109,43 @@ class _UsersScreenState extends State<UsersScreen> {
               },
               value: themeState.getDarkTheme,
             ),
-           
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _showLoginDilog() async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Row(
+              children: [
+                Image.asset(
+                  'images/warning-sign.png',
+                  height: 20,
+                  width: 20,
+                ),
+                Text('You Are Logout App?'),
+              ],
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Cancel',
+                    style: text20(),
+                  )),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Logout',
+                    style: text20(),
+                  ))
+            ],
+          );
+        });
   }
 
   Future<void> _showAddressDialog() async {
@@ -144,60 +154,42 @@ class _UsersScreenState extends State<UsersScreen> {
         builder: (context) {
           return AlertDialog(
             title: const Text('Update'),
-            content: TextField(
-              // onChanged: (value) {
-              //   print('_addressTextController.text ${_addressTextController.text}');
-              // },
-              //  controller: _addressTextController,
+            content: const TextField(
               maxLines: 5,
-              decoration: const InputDecoration(hintText: "Your address"),
+              decoration: InputDecoration(hintText: 'Your Address'),
             ),
             actions: [
               TextButton(
-                onPressed: () async {
-                  // String _uid = user!.uid;
-                  // try {
-                  //   await FirebaseFirestore.instance
-                  //       .collection('users')
-                  //       .doc(_uid)
-                  //       .update({
-                  //     'shipping-address': _addressTextController.text,
-                  //   });
-
-                  Navigator.pop(context);
-                  //   setState(() {
-                  //     address = _addressTextController.text;
-                  //   });
-                  // } catch (err) {
-                  //   GlobalMethods.errorDialog(
-                  //       subtitle: err.toString(), context: context);
-                  // }
-                },
+                onPressed: () {},
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {},
                 child: const Text('Update'),
               ),
             ],
           );
         });
   }
+}
 
-  Widget listile({
-    required String title,
-    String? subtitle,
-    required IconData icon,
-    VoidCallback? onTap,
-  }) {
-    return ListTile(
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-      ),
-      subtitle: Text(
-        subtitle == null ? "" : subtitle,
-        style: text16(),
-      ),
-      leading: Icon(icon),
-      trailing: const Icon(IconlyLight.arrow_right_2),
-      onTap: onTap,
-    );
-  }
+Widget listile({
+  required String title,
+  String? subtitle,
+  required IconData icon,
+  VoidCallback? onTap,
+}) {
+  return ListTile(
+    title: Text(
+      title,
+      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+    ),
+    subtitle: Text(
+      subtitle == null ? "" : subtitle,
+      style: text16(),
+    ),
+    leading: Icon(icon),
+    trailing: const Icon(IconlyLight.arrow_right_2),
+    onTap: onTap,
+  );
 }
