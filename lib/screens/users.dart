@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:toprate/consts/colors.dart';
 import 'package:toprate/consts/text_style.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
+import 'package:toprate/screens/card.dart';
 import 'package:toprate/widget.dart/text_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -110,7 +111,10 @@ class _UsersScreenState extends State<UsersScreen> {
             listile(
                 title: 'Forget Password',
                 icon: IconlyBold.unlock,
-                onTap: () {}),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CardScreen()));
+                }),
             listile(title: 'Login', icon: IconlyBold.login, onTap: () {}),
             SwitchListTile(
               title: Text(
@@ -127,11 +131,7 @@ class _UsersScreenState extends State<UsersScreen> {
               },
               value: themeState.getDarkTheme,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  _showAddressDialog();
-                },
-                child: Text('asd'))
+           
           ],
         ),
       ),
@@ -184,7 +184,7 @@ class _UsersScreenState extends State<UsersScreen> {
     required String title,
     String? subtitle,
     required IconData icon,
-    required Function onTap,
+    VoidCallback? onTap,
   }) {
     return ListTile(
       title: Text(
@@ -197,9 +197,7 @@ class _UsersScreenState extends State<UsersScreen> {
       ),
       leading: Icon(icon),
       trailing: const Icon(IconlyLight.arrow_right_2),
-      onTap: () {
-        onTap;
-      },
+      onTap: onTap,
     );
   }
 }
