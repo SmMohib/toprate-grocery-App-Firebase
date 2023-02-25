@@ -21,7 +21,7 @@ class Category_widget extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: secondary),
-          color: primary.withOpacity(0.1)),
+           color: primary.withOpacity(0.1)),
       child: Column(children: [
         Container(
           child: Image.asset(
