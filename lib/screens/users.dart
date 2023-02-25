@@ -7,7 +7,7 @@ import 'package:toprate/consts/colors.dart';
 import 'package:toprate/consts/text_style.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/screens/card.dart';
-import 'package:toprate/widget.dart/text_widget.dart';
+import 'package:toprate/widget/text_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class UsersScreen extends StatefulWidget {
@@ -124,8 +124,11 @@ class _UsersScreenState extends State<UsersScreen> {
               children: [
                 Image.asset(
                   'images/warning-sign.png',
-                  height: 20,
-                  width: 20,
+                  height: 25,
+                  width: 25,
+                ),
+                SizedBox(
+                  width: 7,
                 ),
                 Text('You Are Logout App?'),
               ],

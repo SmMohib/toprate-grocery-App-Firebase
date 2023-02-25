@@ -30,6 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             value: themeState.getDarkTheme,
           ),
+          Image.asset(
+            'images/warning-sign.png',
+            height: 200,
+            width: 200,
+          ),
         ],
       ),
     );
