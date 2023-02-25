@@ -1,7 +1,11 @@
+// ignore_for_file: sized_box_for_whitespace, sort_child_properties_last, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 import 'package:toprate/consts/colors.dart';
+import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/widget/text_widget.dart';
 
 class Category_widget extends StatelessWidget {
@@ -9,6 +13,8 @@ class Category_widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeState = Provider.of<DarkThemeProvider>(context);
+    final color = themeState.getDarkTheme ? btColor : dark;
     double __width = MediaQuery.of(context).size.width;
     double __height = MediaQuery.of(context).size.height;
     return Container(
@@ -18,9 +24,11 @@ class Category_widget extends StatelessWidget {
           color: primary.withOpacity(0.1)),
       child: Column(children: [
         Container(
-          child: Image.asset('images/cat/fruits.png'),
-          height: __height * 0.2,
-          width: __width * 0.4,
+          child: Image.asset(
+            'images/cat/fruits.png',
+          ),
+          height: 100,
+          width: 200,
         ),
         TextWidget(text: 'text', textSize: 22)
       ]),

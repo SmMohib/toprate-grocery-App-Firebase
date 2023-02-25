@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -14,34 +16,21 @@ class CategoriesScreen extends StatelessWidget {
     double __width = MediaQuery.of(context).size.width;
     double __height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Column(
-        // ignore: prefer_const_literals_to_create_immutables
-        children: [
-          // ignore: prefer_const_constructors
-
-          GridView.count(
-            childAspectRatio: 200 / 250,
-            crossAxisSpacing: 5,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          itemCount: 10,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+            crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            children: List.generate(10, (index) {
-              return Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: secondary),
-                    color: primary.withOpacity(0.1)),
-                child: Column(children: [
-                  Container(
-                    child: Image.asset('images/cat/fruits.png'),
-                    height: __height * 0.2,
-                    width: __width * 0.4,
-                  ),
-                  TextWidget(text: 'text', textSize: 22)
-                ]),
-              );
-            }),
-          )
-        ],
+            mainAxisExtent: 170,
+            childAspectRatio: 2,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return Category_widget();
+          },
+        ),
       ),
     );
   }
