@@ -92,47 +92,47 @@ class _HomeScreenState extends State<HomeScreen> {
                               ? Color.fromRGBO(198, 224, 252, 0.976)
                               : Color.fromARGB(66, 241, 212, 212),
                           borderRadius: BorderRadius.circular(14)),
-                      height: size.height * 0.24,
+                      height: size.height * 0.25,
                       // width: size.width * 22,
-                      width: 200,
+                      width: size.height * 0.27,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Image.asset(
-                                        '${imagelist[index]}',
-                                        height: size.width * 0.25,
-                                        //   width: size.width * 0.12,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: Column(
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    '${imagelist[index]}',
+                                    height: size.height * 0.16,
+                                    width: size.width * 0.33,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Column(
+                                children: [
+                                  TextWidget(text: '1Kg', textSize: 24),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    // ignore: prefer_const_literals_to_create_immutables
                                     children: [
-                                      TextWidget(text: '1Kg', textSize: 24),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        // ignore: prefer_const_literals_to_create_immutables
-                                        children: [
-                                          Icon(
-                                            IconlyBold.bag,
-                                          ),
-                                          Icon(
-                                            IconlyBold.heart,
-                                          ),
-                                        ],
+                                      Icon(
+                                        IconlyBold.bag,
+                                      ),
+                                      Icon(
+                                        IconlyBold.heart,
                                       ),
                                     ],
-                                  )),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                           Row(
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               TextWidget(text: 'text', textSize: 24),
                             ],
                           ),
-                          TextWidget(text: 'Pudina Pata', textSize: 24),
+                          TextWidget(text: 'Pudina Pata', textSize: 27),
                         ],
                       ),
                     ),
