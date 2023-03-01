@@ -10,6 +10,7 @@ import 'package:toprate/consts/colors.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/services/dark_theme_prefer.dart';
 import 'package:toprate/services/utils.dart';
+import 'package:toprate/widget/feed_items.dart';
 import 'package:toprate/widget/item_widget.dart';
 import 'package:toprate/widget/text_widget.dart';
 
@@ -115,6 +116,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      SizedBox(
+        height: 10,
+      ),
+      GridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        children: List.generate(5, (index) {
+          return Feed_Items();
+        }),
+      ),
+     
     ])));
   }
 }
