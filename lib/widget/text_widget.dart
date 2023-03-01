@@ -5,12 +5,14 @@ class TextWidget extends StatelessWidget {
     Key? key,
     required this.text,
     this.color,
+    this.fontWeight,
     required this.textSize,
     this.isTitle = false,
     this.maxLines = 10,
   }) : super(key: key);
   final String text;
   final Color? color;
+  final FontWeight? fontWeight;
   final double textSize;
   bool isTitle;
   int maxLines = 10;

@@ -9,6 +9,7 @@ import 'package:toprate/consts/colors.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/services/dark_theme_prefer.dart';
 import 'package:toprate/services/utils.dart';
+import 'package:toprate/widget/item_widget.dart';
 import 'package:toprate/widget/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,11 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final themeState = Provider.of<DarkThemeProvider>(context);
     Size size = Utils(context).sizeScreen;
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.33,
-            child: Center(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: size.height * 0.33,
               child: Swiper(
                 itemCount: imagelist.length,
                 itemBuilder: (context, index) {
@@ -54,114 +55,50 @@ class _HomeScreenState extends State<HomeScreen> {
                 control: SwiperControl(color: Colors.black),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // ignore: prefer_const_constructors
-                Text(
-                  'Resent Added',
-                  style: TextStyle(fontSize: 20),
-                ),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'See All',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: themeState.getDarkTheme
-                              ? Colors.black
-                              : Colors.white),
-                    ))
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // ignore: prefer_const_constructors
+                  Text(
+                    'Resent Added',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'See All',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: themeState.getDarkTheme
+                                ? Colors.black
+                                : Colors.white),
+                      ))
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: size.width * 0.60,
-            child: ListView.builder(
-                itemCount: imagelist.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: themeState.getDarkTheme
-                              ? Color.fromRGBO(198, 224, 252, 0.976)
-                              : Color.fromARGB(66, 241, 212, 212),
-                          borderRadius: BorderRadius.circular(14)),
-                      height: size.height * 0.25,
-                      // width: size.width * 22,
-                      width: size.height * 0.27,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(
-                                    '${imagelist[index]}',
-                                    height: size.height * 0.16,
-                                    width: size.width * 0.33,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  TextWidget(text: '1Kg', textSize: 24),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    children: [
-                                      Icon(
-                                        IconlyBold.bag,
-                                      ),
-                                      Icon(
-                                        IconlyBold.heart,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              TextWidget(
-                                text: '10\$',
-                                textSize: 27,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              TextWidget(text: 'text', textSize: 24),
-                            ],
-                          ),
-                          TextWidget(text: 'Pudina Pata', textSize: 27),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-          )
-          //   Image.asset(
-          //     'images/warning-sign.png',
-          //     height: 200,
-          //     width: 200,
-          //   ),
-          //  Image.network(
-          //               "https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg"),
-        ],
+
+            //recent add
+            SizedBox(
+                height: size.width * 0.80,
+                child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: imagelist.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return ItemWidget();
+                    })),
+
+            //   Image.asset(
+            //     'images/warning-sign.png',
+            //     height: 200,
+            //     width: 200,
+            //   ),
+            //  Image.network(
+            //               "https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg"),
+          ],
+        ),
       ),
     );
   }
