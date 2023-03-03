@@ -1,20 +1,18 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:toprate/consts/colors.dart';
+import 'package:toprate/inner_screens/feeds_screen.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
-import 'package:toprate/services/dark_theme_prefer.dart';
+import 'package:toprate/inner_screens/onsale_screen.dart';
 import 'package:toprate/services/utils.dart';
 import 'package:toprate/widget/feed_items.dart';
 import 'package:toprate/widget/item_widget.dart';
 import 'package:toprate/widget/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = "/OnsaleScreen";
   const HomeScreen({super.key});
 
   @override
@@ -36,8 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
+      //slider
       SizedBox(
-        height: size.height * 0.33,
+        height: size.height * 0.27,
         child: Swiper(
           itemCount: imagelist.length,
           itemBuilder: (context, index) {
@@ -67,7 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 20),
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, OnSaleScreen.routeName);
+                },
                 child: Text(
                   'See All',
                   style: TextStyle(
@@ -102,9 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          //item
           Flexible(
             child: SizedBox(
-              height: size.height * 0.25,
+              height: size.height * 0.26,
               child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   itemCount: imagelist.length,
@@ -116,8 +118,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, FeedsItemScreen.routeName);
+          },
+          child: TextWidget(
+            text: 'View All',
+            textSize: 24,
+            fontWeight: FontWeight.w700,
+            isTitle: true,
+          )),
       SizedBox(
-        height: 10,
+        height: 4,
       ),
       GridView.count(
         crossAxisCount: 2,
@@ -126,7 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
           return Feed_Items();
         }),
       ),
-     
     ])));
   }
 }

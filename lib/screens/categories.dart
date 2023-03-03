@@ -8,6 +8,7 @@ import 'package:toprate/consts/colors.dart';
 import 'package:toprate/consts/text_style.dart';
 import 'package:toprate/model/categoriesModel.dart';
 import 'package:toprate/widget/categories_widget.dart';
+import 'package:toprate/widget/feed_items.dart';
 import 'package:toprate/widget/text_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -20,36 +21,13 @@ class CategoriesScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          itemCount: categorylist.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            mainAxisExtent: 170,
-            childAspectRatio: 2,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: secondary),
-                  color: primary.withOpacity(0.1)),
-              child: Column(children: [
-                Container(
-                  child: CachedNetworkImage(
-                    imageUrl: "${categorylist[index].img}",
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                  height: 200,
-                  width: 200,
-                ),
-                Text(' ${categorylist[index].name}')
-              ]),
-            );
-          },
-        ),
+        child:  GridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        children: List.generate(5, (index) {
+          return Feed_Items();
+        }),
+      ),
       ),
     );
   }

@@ -100,14 +100,6 @@ class ItemWidget extends StatelessWidget {
                     isTitle: true,
                   ),
                   const SizedBox(height: 5),
-
-                  //   Image.asset(
-                  //     'images/warning-sign.png',
-                  //     height: 200,
-                  //     width: 200,
-                  //   ),
-                  //  Image.network(
-                  //               "https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg"),
                 ],
               ))),
     );

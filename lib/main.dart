@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toprate/consts/theme_data.dart';
+import 'package:toprate/inner_screens/feeds_screen.dart';
+
 import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/screens/btm_nav.dart';
+import 'package:toprate/inner_screens/onsale_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,9 +49,16 @@ class _MyAppState extends State<MyApp> {
             // ignore: prefer_const_constructors
             home: BtmNev(),
             debugShowCheckedModeBanner: false,
+            routes: {
+              FeedsItemScreen.routeName:(context) =>const FeedsItemScreen(),
+              OnSaleScreen.routeName:(context)=>const OnSaleScreen(),
+              
+            },
           );
         },
       ),
+      
     );
+
   }
 }
