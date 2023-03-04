@@ -131,12 +131,14 @@ class _HomeScreenState extends State<HomeScreen> {
       SizedBox(
         height: 4,
       ),
-      GridView.count(
-        crossAxisCount: 2,
-        shrinkWrap: true,
-        children: List.generate(5, (index) {
-          return Feed_Items();
-        }),
+      SizedBox(
+        child: GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          children: List.generate(5, (index) {
+            return Feed_Items();
+          }),
+        ),
       ),
     ])));
   }

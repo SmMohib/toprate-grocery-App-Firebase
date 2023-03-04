@@ -44,8 +44,8 @@ class ItemWidget extends StatelessWidget {
                     children: [
                       Image.asset(
                         'images/cat/Spinach.png',
-                        height: size.width * 0.22,
-                        width: size.width * 0.22,
+                        height: size.width * 0.20,
+                        width: size.width * 0.20,
                         fit: BoxFit.fill,
                       ),
                       Column(
@@ -56,7 +56,7 @@ class ItemWidget extends StatelessWidget {
                             isTitle: true,
                           ),
                           const SizedBox(
-                            height: 6,
+                            height: 5,
                           ),
                           Row(
                             children: [
@@ -72,7 +72,6 @@ class ItemWidget extends StatelessWidget {
                       )
                     ],
                   ),
-
                   const SizedBox(height: 5),
                   Row(
                     children: [

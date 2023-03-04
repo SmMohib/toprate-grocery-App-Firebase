@@ -19,6 +19,7 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+      height: 35,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: Color.fromARGB(255, 253, 123, 17)
@@ -30,7 +31,7 @@ class AuthButton extends StatelessWidget {
           },
           child: TextWidget(
             text: buttonText,
-            textSize: 20,
+            textSize: 18,
             color: Colors.white,
           )),
     );

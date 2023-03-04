@@ -50,15 +50,12 @@ class _MyAppState extends State<MyApp> {
             home: BtmNev(),
             debugShowCheckedModeBanner: false,
             routes: {
-              FeedsItemScreen.routeName:(context) =>const FeedsItemScreen(),
-              OnSaleScreen.routeName:(context)=>const OnSaleScreen(),
-              
+              FeedsItemScreen.routeName: (context) => const FeedsItemScreen(),
+              OnSaleScreen.routeName: (context) => const OnSaleScreen(),
             },
           );
         },
       ),
-      
     );
-
   }
 }

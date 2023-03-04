@@ -1,49 +1,86 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:toprate/consts/colors.dart';
 
-// class NavigationControls extends StatelessWidget {
-//   const NavigationControls({super.key, required this.webViewController});
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
 
-//   final WebViewController webViewController;
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: <Widget>[
-//         IconButton(
-//           icon: const Icon(Icons.arrow_back_ios),
-//           onPressed: () async {
-//             if (await webViewController.canGoBack()) {
-//               await webViewController.goBack();
-//             } else {
-//               if (context.mounted) {
-//                 ScaffoldMessenger.of(context).showSnackBar(
-//                   const SnackBar(content: Text('No back history item')),
-//                 );
-//               }
-//             }
-//           },
-//         ),
-//         IconButton(
-//           icon: const Icon(Icons.arrow_forward_ios),
-//           onPressed: () async {
-//             if (await webViewController.canGoForward()) {
-//               await webViewController.goForward();
-//             } else {
-//               if (context.mounted) {
-//                 ScaffoldMessenger.of(context).showSnackBar(
-//                   const SnackBar(content: Text('No forward history item')),
-//                 );
-//               }
-//             }
-//           },
-//         ),
-//         IconButton(
-//           icon: const Icon(Icons.replay),
-//           onPressed: () => webViewController.reload(),
-//         ),
-//       ],
-//     );
-//   }
-// }
+class _MyWidgetState extends State<MyWidget> {
+  int i = 1;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: btColor,
+      body: Column(
+        children: [
+          Text('${(10 * i)}'),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    if (i > 1) {
+                      i--;
+                    }
+                  });
+                },
+                child: Icon(
+                  Icons.remove,
+                  color: Colors.black,
+                ),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(10),
+                ),
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              Text(
+                '$i kg',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    i++;
+                  });
+                },
+                child: Icon(
+                  Icons.add,
+                  color: Colors.black,
+                ),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(10),
+                ),
+              ),
+            ],
+          ),
+          Text(
+            'Chackout: (${(10 * i)})',
+            style: TextStyle(fontSize: 20),
+          ),
+        ],
+      ),
+    );
+  }
+}

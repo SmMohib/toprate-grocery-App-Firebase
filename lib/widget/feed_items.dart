@@ -16,98 +16,86 @@ class Feed_Items extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
     Size size = Utils(context).sizeScreen;
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).cardColor,
-        child: InkWell(
-          onTap: () {
-            // GlobalMethods.navigateTo(
-            //     ctx: context, routeName: ProductDetails.routeName);
-          },
-          borderRadius: BorderRadius.circular(12),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                FancyShimmerImage(
-                  imageUrl: 'images/cat/spices.png',
-                  height: size.width * 0.21,
-                  width: size.width * 0.3,
-                  boxFit: BoxFit.fill,
+    return InkWell(
+      onTap: () {
+        // GlobalMethods.navigateTo(
+        //     ctx: context, routeName: ProductDetails.routeName);
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Card(
+        child: Column(children: [
+          Image.asset(
+            'images/cat/spices.png',
+            height: size.width * 0.22,
+            width: size.width * 0.3,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 3,
+                    child: TextWidget(
+                      text: 'Apple',
+                      maxLines: 1,
+                      textSize: 16,
+                      isTitle: true,
+                    ),
+                  ),
+                  Flexible(flex: 1, child: Icon(IconlyLight.heart))
+                ]),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                flex: 3,
+                child: Row(
+                  children: [
+                    TextWidget(
+                      text: '200',
+                      textSize: 20,
+                      color: Colors.green,
+                      isTitle: true,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "100",
+                      style: TextStyle(
+                          fontSize: 18, decoration: TextDecoration.lineThrough),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          flex: 3,
-                          child: TextWidget(
-                            text: 'Apple',
-                            maxLines: 1,
-                            textSize: 18,
-                            isTitle: true,
-                          ),
-                        ),
-                        Flexible(flex: 1, child: Icon(IconlyLight.heart))
-                      ]),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        flex: 3,
-                        child: Row(
-                          children: [
-                            TextWidget(
-                              text: '200',
-                              textSize: 26,
-                              color: Colors.green,
-                              isTitle: true,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "100",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  decoration: TextDecoration.lineThrough),
-                            )
-                          ],
+              ),
+              Flexible(
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 6,
+                      child: FittedBox(
+                        child: TextWidget(
+                          text: 'kg 1',
+                          textSize: 20,
+                          isTitle: true,
                         ),
                       ),
-                      Flexible(
-                        child: Row(
-                          children: [
-                            Flexible(
-                              flex: 6,
-                              child: FittedBox(
-                                child: TextWidget(
-                                  text: 'kg 1',
-                                  textSize: 20,
-                                  isTitle: true,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                    width: double.infinity,
-                    child: AuthButton(fct: () {}, buttonText: 'Add Card')),
-              ]),
-        ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          AuthButton(fct: () {}, buttonText: 'Add Card'),
+        ]),
       ),
     );
   }
