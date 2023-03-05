@@ -6,6 +6,7 @@ class TextWidget extends StatelessWidget {
     required this.text,
     this.color,
     this.fontWeight,
+    this.textStyle,
     required this.textSize,
     this.isTitle = false,
     this.maxLines = 10,
@@ -14,6 +15,7 @@ class TextWidget extends StatelessWidget {
   final Color? color;
   final FontWeight? fontWeight;
   final double textSize;
+  final TextStyle? textStyle;
   bool isTitle;
   int maxLines = 10;
   @override

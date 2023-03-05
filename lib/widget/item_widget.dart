@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:toprate/inner_screens/productdetail.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/services/utils.dart';
 import 'package:toprate/widget/text_widget.dart';
@@ -33,74 +34,79 @@ class ItemWidget extends StatelessWidget {
           //  width: size.height * 0.27,
           // height: size.width * 0.26,
 
-          child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'images/cat/Spinach.png',
-                        height: size.width * 0.20,
-                        width: size.width * 0.20,
-                        fit: BoxFit.fill,
-                      ),
-                      Column(
-                        children: [
-                          TextWidget(
-                            text: '1KG',
-                            textSize: 22,
-                            isTitle: true,
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(IconlyLight.bag)),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(IconlyLight.heart))
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      TextWidget(
-                        text: '200',
-                        textSize: 26,
-                        color: Colors.green,
-                        isTitle: true,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "100",
-                        style: TextStyle(
-                            fontSize: 18,
-                            decoration: TextDecoration.lineThrough),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  TextWidget(
-                    text: 'Fruit',
-                    textSize: 20,
-                    isTitle: true,
-                  ),
-                  const SizedBox(height: 5),
-                ],
-              ))),
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, ProductDetail.routeName);
+            },
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'images/cat/Spinach.png',
+                          height: size.width * 0.20,
+                          width: size.width * 0.20,
+                          fit: BoxFit.fill,
+                        ),
+                        Column(
+                          children: [
+                            TextWidget(
+                              text: '1KG',
+                              textSize: 22,
+                              isTitle: true,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(IconlyLight.bag)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(IconlyLight.heart))
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        TextWidget(
+                          text: '200',
+                          textSize: 26,
+                          color: Colors.green,
+                          isTitle: true,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "100",
+                          style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.lineThrough),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    TextWidget(
+                      text: 'Fruit',
+                      textSize: 20,
+                      isTitle: true,
+                    ),
+                    const SizedBox(height: 5),
+                  ],
+                )),
+          )),
     );
   }
 }

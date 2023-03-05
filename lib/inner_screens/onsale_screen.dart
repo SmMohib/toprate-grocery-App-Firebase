@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
+import 'package:toprate/consts/colors.dart';
+import 'package:toprate/model/categoriesModel.dart';
+import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/services/utils.dart';
 import 'package:toprate/widget/feed_items.dart';
 import 'package:toprate/widget/item_widget.dart';
@@ -21,7 +25,9 @@ class _OnSaleScreenState extends State<OnSaleScreen> {
   int i = 1;
   @override
   Widget build(BuildContext context) {
+    final themeState = Provider.of<DarkThemeProvider>(context);
     Size size = Utils(context).sizeScreen;
+
     bool isEmpty = false;
     return Scaffold(
         appBar: AppBar(
@@ -48,17 +54,19 @@ class _OnSaleScreenState extends State<OnSaleScreen> {
                 ),
               )
             : ListView.builder(
-                itemCount: 10,
+                itemCount: categorylist.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    color: Color.fromARGB(255, 119, 91, 0),
+                    color: themeState.getDarkTheme
+                        ? Color.fromRGBO(226, 236, 247, 0.973)
+                        : Color.fromARGB(66, 241, 212, 212),
                     child: Expanded(
                       flex: 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Image.asset(
-                            'images/cat/Spinach.png',
+                            '${categorylist[index].img}',
                             height: size.height * 0.14,
                             width: size.width * 0.24,
                             fit: BoxFit.fill,
@@ -68,18 +76,50 @@ class _OnSaleScreenState extends State<OnSaleScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                SizedBox(
+                                  width: 10,
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    TextWidget(
+                                        text:
+                                            'Sale Price: ${categorylist[index].price}',
+                                        textStyle: TextStyle(
+                                            decoration:
+                                                TextDecoration.overline),
+                                        textSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        isTitle: true),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    TextWidget(
+                                      text:
+                                          '(${categorylist[index].offerpercen}% OFF)',
+                                      textSize: 14,
+                                      color: Colors.red,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(IconlyLight.heart))
+                                  ],
+                                ),
+                                const SizedBox(width: 4),
                                 //price % add
                                 Row(
                                   children: [
                                     TextWidget(
                                         text: 'TK',
-                                        textSize: 22,
+                                        textSize: 18,
                                         fontWeight: FontWeight.w700,
                                         isTitle: true),
                                     const SizedBox(width: 4),
+
                                     TextWidget(
                                       text: '${((40 * i) - 25 / 100 * 40)}',
-                                      textSize: 26,
+                                      textSize: 24,
                                       color: Colors.green,
                                       isTitle: true,
                                     ),
@@ -90,80 +130,61 @@ class _OnSaleScreenState extends State<OnSaleScreen> {
                                     Text(
                                       '${((25 / 100 * 40) * i)}',
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 15,
                                           decoration:
                                               TextDecoration.lineThrough),
                                     ),
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    TextWidget(
-                                      text: '25%',
-                                      textSize: 16,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(IconlyLight.heart))
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        OutlinedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              if (i > 1) {
-                                                i--;
-                                              }
-                                            });
-                                          },
+                                    InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (i > 1) {
+                                              i--;
+                                            }
+                                          });
+                                        },
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.pink,
+                                          radius: 14,
                                           child: Icon(
                                             Icons.remove,
-                                            color: Colors.black,
+                                            size: 15,
                                           ),
-                                          style: OutlinedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            shape: CircleBorder(),
-                                            padding: EdgeInsets.all(10),
-                                          ),
-                                        ),
-                                        TextWidget(
-                                          text: ("${i} KG"),
-                                          textSize: 22,
-                                          isTitle: true,
-                                        ),
-                                        OutlinedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              i++;
-                                            });
-                                          },
+                                        )),
+                                    const SizedBox(width: 5),
+                                    TextWidget(
+                                      text: ("${i} KG"),
+                                      textSize: 18,
+                                      isTitle: true,
+                                    ),
+                                    const SizedBox(width: 5),
+                                    InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            i++;
+                                          });
+                                        },
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.pink,
+                                          radius: 14,
                                           child: Icon(
                                             Icons.add,
-                                            color: Colors.black,
+                                            size: 15,
                                           ),
-                                          style: OutlinedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            shape: CircleBorder(),
-                                            padding: EdgeInsets.all(10),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                        )),
                                   ],
                                 ),
-                                const SizedBox(height: 5),
 
                                 TextWidget(
                                   text: 'Fruit is Favorate',
                                   textSize: 20,
                                   isTitle: true,
                                 ),
+                                SizedBox(
+                                  height: 5,
+                                )
                               ],
                             ),
                           ),
