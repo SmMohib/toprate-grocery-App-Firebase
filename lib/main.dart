@@ -7,6 +7,7 @@ import 'package:toprate/inner_screens/productdetail.dart';
 import 'package:toprate/provider/dark_theme_provider.dart';
 import 'package:toprate/screens/btm_nav.dart';
 import 'package:toprate/inner_screens/onsale_screen.dart';
+import 'package:toprate/screens/card.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
             home: BtmNev(),
             debugShowCheckedModeBanner: false,
             routes: {
+              CardScreen.routeName:(context) => CardScreen(),
               ProductDetail.routeName:(context) => const ProductDetail(),
               FeedsItemScreen.routeName: (context) => const FeedsItemScreen(),
               OnSaleScreen.routeName: (context) => const OnSaleScreen(),
