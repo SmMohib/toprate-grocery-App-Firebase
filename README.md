@@ -1,4 +1,4 @@
-# toprate
+# toprate Grosery App
 
 A new Flutter project.
 
@@ -7,7 +7,7 @@ A new Flutter project.
 This project is a starting point for a Flutter application.
 
 
-![](https://github.com/SmMohib/Flutter-EnChat-Secured-Realtime-Messaging-Android-Application-/blob/main/22.jpg)
+![](https://github.com/SmMohib/toprate-grocery-App-Firebase/blob/main/screen_short/1.png)
 
 
 ## Mobile support
@@ -21,7 +21,5 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-#� �t�o�p�r�a�t�e�-�G�r�o�s�a�r�y�-�A�p�p�-�F�i�r�b�a�s�e�
-�
-�# toprate-Grosary-App-Firbase
+samples, guidance on mobile development.
+# toprate-Grosary-App-Firbase
